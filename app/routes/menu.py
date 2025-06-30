@@ -18,6 +18,10 @@ def create_menu_item(item: schemas.MenuItemCreate, db: Session = Depends(get_db)
 def get_menu_items(db: Session = Depends(get_db)):
     return db.query(models.MenuItem).all()
 
+@router.get("/available/", response_model=List[schemas.MenuItemOut])
+def get_available_menu_items(db: Session = Depends(get_db)):
+    return db.query(models.MenuItem).filter(models.MenuItem.is_available == True).all()
+
 @router.get("/{item_id}", response_model=schemas.MenuItemOut)
 def get_menu_item(item_id: int, db: Session = Depends(get_db)):
     item = db.query(models.MenuItem).filter(models.MenuItem.id == item_id).first()

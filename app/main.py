@@ -10,7 +10,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS middleware
+"""CORS middleware"""
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -19,7 +19,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Request logging middleware
+"""Request logging middleware"""
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
     start_time = time.time()
