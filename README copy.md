@@ -12,3 +12,5 @@ pip install -r requirements.txt
 ```
 uvicorn main:app --reload
 ```
+5. Run "python -c "from app.models import Base; from app.database import engine; Base.metadata.create_all(bind=engine)""
+6. Setup environment and run "uvicorn app.main:app --reload"
